@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Student {
+public:
+    int rollNo;
+    void getStudentInfo() {
+        rollNo = 101;
+        cout << "Roll No: " << rollNo << endl;
+    }
+};
+
+// Derived class 1 from Student
+class Test : public Student {
+public:
+    int marks1, marks2;
+    void getMarks() {
+        marks1 = 85;
+        marks2 = 90;
+        cout << "Marks in English: " << marks1 << endl;
+        cout << "Marks in Math: " << marks2 << endl;
+    }
+};
+
+// Derived class 2 from Student
+class Sports : public Student {
+public:
+    int score;
+    void getSportsScore() {
+        score = 40;
+        cout << "Sports Score: " << score << endl;
+    }
+};
+
+// Derived class from Test and Sports (Multiple inheritance)
+class Result : public Test, public Sports {
+public:
+    void displayResult() {
+        // Ambiguity solved by specifying which 'rollNo' to use
+        cout << "\nFinal Result for Roll No: " << Test::rollNo << endl;
+        int total = marks1 + marks2 + score;
+        cout << "Total Score: " << total << endl;
+        cout << "Average: " << total / 3.0 << endl;
+    }
+};
+
+// Main function
+int main() {
+    Result r;
+
+    // Access methods using scope resolution to avoid ambiguity
+    r.Test::getStudentInfo(); // from Student via Test
+    r.getMarks(); // from Test
+    r.getSportsScore(); // from Sports
+    r.displayResult(); // from Result
+
+    return 0;
+}
+Page
