@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Student {
+public:
+    void getStudentInfo() {
+        cout << "Name: Hari Priya" << endl;
+        cout << "Roll No: 101" << endl;
+    }
+};
+
+// Derived class 1
+class Marks : public Student {
+public:
+    void getMarks() {
+        cout << "Marks in English: 85" << endl;
+        cout << "Marks in Math: 90" << endl;
+    }
+};
+
+// Derived class 2
+class Sports : public Student {
+public:
+    void getSportsScore() {
+        cout << "Sports Score: 40" << endl;
+    }
+};
+
+// Main function
+int main() {
+    Marks m;
+    Sports s;
+
+    cout << "--- Academic Record ---" << endl;
+    m.getStudentInfo();
+    m.getMarks();
+
+    cout << "\n--- Sports Record ---" << endl;
+    s.getStudentInfo();
+    s.getSportsScore();
+
+    return 0;
+}
+
